@@ -1,4 +1,8 @@
-# BikeBoard — Testes E2E com Playwright
+# BikeBoard — Testes E2E com Playwright - BY GLAUCIO J SILVEIRA
+
+- Este projeto é de teste automatizado usando o Playwright de um site dde compra e venda de bicicletas.
+- Este Projeto tem - Testin contínuos -  via pipelines de CI/CD (Integração Contínua/Entrega Contínua).
+
 
 Resumo
 ---
