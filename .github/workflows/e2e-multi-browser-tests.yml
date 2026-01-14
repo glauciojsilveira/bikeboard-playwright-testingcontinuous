@@ -1,9 +1,9 @@
 name: E2E Multi-Browser Tests by Glaucio
 on:
   push:
-    branches: [ main, master ]
+    branches: [ multi-browser-tests ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ multi-browser-tests ]
   workflow_dispatch:
 jobs:
 #Testes in Chromium
