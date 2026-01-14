@@ -1,0 +1,92 @@
+name: E2E Multi-Browser Tests by Glaucio
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+jobs:
+#Testes in Chromium
+  tests-chromium:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+
+    - name: Run E2E tests by Glaucio
+      run: npx playwright test --project=chromium 
+      
+    - uses: actions/upload-artifact@v5
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report-chromium
+        path: playwright-report/
+        retention-days: 30
+#Testes in Webkit (Safari)
+  tests-Webkit:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps webkit
+
+    - name: Run E2E tests by Glaucio
+      run: npx playwright test --project=webkit
+      
+    - uses: actions/upload-artifact@v5
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report-Safari
+        path: playwright-report/
+        retention-days: 30
+#Testes in Firefox
+  tests-firefox:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps firefox
+
+    - name: Run E2E tests by Glaucio
+      run: npx playwright test --project=firefox
+      
+    - uses: actions/upload-artifact@v5
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report-Firefox
+        path: playwright-report/
+        retention-days: 30
